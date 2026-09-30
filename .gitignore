@@ -1,0 +1,15 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+.env.*
+
+# Qdrant
+backend/qdrant_data/
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,475 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background: #f5f7fb;
+  color: #172033;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+  height: 72px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-bottom: 1px solid #e7eaf0;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  color: #315efb;
+}
+
+.nav-status {
+  font-size: 13px;
+  color: #7a8499;
+}
+
+
+/* MAIN */
+
+.main-container {
+  width: min(1100px, 90%);
+  margin: 0 auto;
+  flex: 1;
+}
+
+
+/* HERO */
+
+.hero {
+  max-width: 850px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 7px 13px;
+  border-radius: 30px;
+  background: #eaf0ff;
+  color: #315efb;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.hero h1 {
+  margin: 25px 0 18px;
+  font-size: clamp(42px, 6vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -3px;
+}
+
+.hero h1 span {
+  color: #315efb;
+}
+
+.hero-description {
+  max-width: 650px;
+  margin: 0 auto 40px;
+  color: #697386;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+
+/* INPUT */
+
+.goal-box {
+  background: white;
+  border: 1px solid #dfe4ed;
+  border-radius: 18px;
+  padding: 18px;
+  text-align: left;
+  box-shadow: 0 15px 45px rgba(30, 45, 80, 0.08);
+}
+
+.goal-box textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: vertical;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #172033;
+}
+
+.goal-box textarea::placeholder {
+  color: #a1a9b8;
+}
+
+.goal-footer {
+  padding-top: 15px;
+  border-top: 1px solid #edf0f5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #8b94a5;
+  font-size: 13px;
+}
+
+.goal-footer button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 21px;
+  background: #315efb;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.goal-footer button:hover {
+  background: #244bd4;
+}
+
+.goal-footer button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+
+/* EXAMPLES */
+
+.examples {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #858ea0;
+  font-size: 13px;
+}
+
+.examples button {
+  border: 1px solid #dfe4ed;
+  background: white;
+  padding: 8px 13px;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #475268;
+}
+
+.examples button:hover {
+  border-color: #315efb;
+  color: #315efb;
+}
+
+
+/* ERROR */
+
+.error {
+  margin-top: 20px;
+  padding: 13px;
+  background: #fff0f0;
+  border: 1px solid #ffd0d0;
+  border-radius: 10px;
+  color: #c0392b;
+}
+
+
+/* RESULTS */
+
+.results {
+  padding: 50px 0 80px;
+}
+
+.back-button {
+  border: none;
+  background: transparent;
+  color: #315efb;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0;
+}
+
+.result-header {
+  margin: 45px 0;
+}
+
+.result-header h1 {
+  font-size: 42px;
+  letter-spacing: -1.5px;
+  margin: 18px 0 10px;
+}
+
+.result-header p {
+  color: #697386;
+}
+
+
+/* CARDS */
+
+.card {
+  background: white;
+  border: 1px solid #e1e6ef;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 30px rgba(30, 45, 80, 0.04);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+
+
+/* INTENT */
+
+.intent-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.intent-grid div {
+  background: #f7f8fb;
+  padding: 17px;
+  border-radius: 12px;
+}
+
+.intent-grid label {
+  display: block;
+  font-size: 12px;
+  color: #8a93a5;
+  margin-bottom: 6px;
+}
+
+.intent-grid strong {
+  font-size: 15px;
+}
+
+
+/* PROCESSES */
+
+.process-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.process-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 17px;
+  background: #f7f8fb;
+  border-radius: 12px;
+}
+
+.process-number {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #315efb;
+  color: white;
+  font-weight: 700;
+}
+
+.process-item p {
+  margin: 5px 0 0;
+  color: #7c8597;
+  font-size: 13px;
+}
+
+
+/* STEPS */
+
+.steps {
+  position: relative;
+}
+
+.step {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 38px;
+  width: 2px;
+  height: calc(100% - 25px);
+  background: #dce2ee;
+}
+
+.step-number {
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #315efb;
+  color: white;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.step-content h3 {
+  margin: 5px 0 8px;
+}
+
+.step-content p {
+  margin: 0;
+  color: #697386;
+  line-height: 1.6;
+}
+
+.documents {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.documents strong {
+  font-size: 13px;
+}
+
+.documents span {
+  background: #eef2ff;
+  color: #315efb;
+  padding: 5px 9px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+
+/* EVIDENCE */
+
+.evidence-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.evidence {
+  padding: 18px;
+  border: 1px solid #e4e8f0;
+  border-radius: 12px;
+}
+
+.evidence-source {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.evidence-source span {
+  color: #7b8496;
+  font-size: 13px;
+}
+
+.evidence p {
+  color: #596377;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.evidence a {
+  color: #315efb;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* UNCERTAINTY */
+
+.uncertainty {
+  border-left: 4px solid #e3a11c;
+}
+
+.uncertainty li {
+  margin-bottom: 9px;
+  color: #697386;
+}
+
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #929aaa;
+  font-size: 12px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    padding: 0 5%;
+  }
+
+  .nav-status {
+    display: none;
+  }
+
+  .hero {
+    margin: 65px auto;
+  }
+
+  .hero h1 {
+    letter-spacing: -2px;
+  }
+
+  .goal-footer {
+    align-items: flex-start;
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  .goal-footer button {
+    width: 100%;
+  }
+
+  .intent-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+}
