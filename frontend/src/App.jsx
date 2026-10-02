@@ -1,8 +1,9 @@
-
-
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import axios from "axios";
-
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./lib/firebase";
+import Login from "./components/Login";
+import { logout } from "./lib/auth";
 import {
   ArrowRight,
   CheckCircle2,
@@ -510,6 +511,22 @@ function StatCard({
 export default function App() {
 
   /* =======================================================
+     AUTHENTICATION
+  ======================================================= */
+
+  const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setAuthLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  /* =======================================================
      STATE
   ======================================================= */
 
@@ -691,6 +708,36 @@ export default function App() {
     verification?.unsupported || [];
 
   /* =======================================================
+     AUTHENTICATION GATES
+  ======================================================= */
+
+  if (authLoading) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          gap: "12px",
+          background: "#f7f9fc",
+          color: "#172b4d",
+        }}
+      >
+        <Loader2 size={30} className="spin" />
+        <p style={{ margin: 0, fontWeight: 600 }}>
+          Loading CivicFlow...
+        </p>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <Login />;
+  }
+
+  /* =======================================================
      RENDER
   ======================================================= */
 
@@ -725,17 +772,122 @@ export default function App() {
 
           </div>
 
-          {result && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "9px",
+                padding: "6px 10px",
+                border: "1px solid rgba(23, 43, 77, 0.12)",
+                borderRadius: "12px",
+                background: "#ffffff",
+              }}
+            >
+              {user?.photoURL ? (
+                <img
+                  src={user.photoURL}
+                  alt={user.displayName || "User"}
+                  style={{
+                    width: "30px",
+                    height: "30px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
+                />
+              ) : (
+                <div
+                  style={{
+                    width: "30px",
+                    height: "30px",
+                    borderRadius: "50%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "#e8eef8",
+                    color: "#172b4d",
+                    fontWeight: 700,
+                    fontSize: "13px",
+                  }}
+                >
+                  {(user?.displayName || user?.email || "U")
+                    .charAt(0)
+                    .toUpperCase()}
+                </div>
+              )}
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  minWidth: 0,
+                }}
+              >
+                <strong
+                  style={{
+                    fontSize: "12px",
+                    lineHeight: 1.2,
+                    color: "#172b4d",
+                    maxWidth: "150px",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {user?.displayName || "CivicFlow User"}
+                </strong>
+
+                <span
+                  style={{
+                    fontSize: "10px",
+                    lineHeight: 1.2,
+                    color: "#6b778c",
+                    maxWidth: "150px",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {user?.email}
+                </span>
+              </div>
+            </div>
+
             <button
               type="button"
-              className="new-analysis-button"
-              onClick={resetAnalysis}
+              onClick={logout}
+              style={{
+                border: "1px solid rgba(23, 43, 77, 0.14)",
+                background: "#ffffff",
+                color: "#172b4d",
+                borderRadius: "10px",
+                padding: "9px 12px",
+                fontSize: "12px",
+                fontWeight: 700,
+                cursor: "pointer",
+              }}
             >
-              <RefreshCw size={15} />
-
-              New analysis
+              Sign out
             </button>
-          )}
+
+            {result && (
+              <button
+                type="button"
+                className="new-analysis-button"
+                onClick={resetAnalysis}
+              >
+                <RefreshCw size={15} />
+
+                New analysis
+              </button>
+            )}
+          </div>
 
         </div>
 
